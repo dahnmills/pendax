@@ -1,4 +1,4 @@
-const wordToGuess = 'pendu'.toUpperCase();
+const wordToGuess = "Je m'en vais fin Avril".toUpperCase();
 let guessedLetters = [];
 let wrongLetters = [];
 
