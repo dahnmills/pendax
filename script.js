@@ -1,9 +1,12 @@
-const wordToGuess = "Je m'en vais fin Avril".toUpperCase();
+const wordToGuess = 'je m'en vais fin avril'.toUpperCase();
 let guessedLetters = [];
 let wrongLetters = [];
 
 function displayWord() {
-    const wordDisplay = wordToGuess.split('').map(letter => guessedLetters.includes(letter) ? letter : "_").join(' ');
+    const wordDisplay = wordToGuess
+      .split('')
+      .map(letter => letter === ' ' ? ' ' : guessedLetters.includes(letter) ? letter : "_")
+      .join(' ');
     document.getElementById('wordToGuess').innerText = wordDisplay;
 }
 
@@ -14,6 +17,11 @@ function updateWrongLetters() {
 document.getElementById('letterInput').addEventListener('input', function(e) {
     const letter = e.target.value.toUpperCase();
     e.target.value = '';
+
+    // Skip spaces
+    if (letter === ' ') {
+        return;
+    }
 
     if (guessedLetters.includes(letter) || wrongLetters.includes(letter)) {
         return;
@@ -31,7 +39,7 @@ document.getElementById('letterInput').addEventListener('input', function(e) {
 });
 
 function checkGameOver() {
-    const isComplete = wordToGuess.split('').every(letter => guessedLetters.includes(letter));
+    const isComplete = wordToGuess.split('').every(letter => letter === ' ' || guessedLetters.includes(letter));
 
     if (isComplete) {
         alert('Bravo! Tu as gagné!');
