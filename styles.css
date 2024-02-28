@@ -1,0 +1,29 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#game {
+  text-align: center;
+}
+
+#wordToGuess {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#letters {
+  margin-bottom: 10px;
+}
+
+#letterInput {
+  margin-bottom: 20px;
+}
+
+#wrongLetters {
+  color: red;
+}
