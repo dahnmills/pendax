@@ -1,13 +1,13 @@
-const wordToGuess = 'je m'en vais fin avril'.toUpperCase();
-let guessedLetters = [];
+const wordToGuess = "je pars fin avril".toUpperCase();
+let guessedLetters = [' ']; // Add space to guessed letters so it's always shown
 let wrongLetters = [];
 
 function displayWord() {
     const wordDisplay = wordToGuess
       .split('')
-      .map(letter => letter === ' ' ? ' ' : guessedLetters.includes(letter) ? letter : "_")
+      .map(letter => letter === ' ' ? '&nbsp;&nbsp;' : guessedLetters.includes(letter) ? letter : "_")
       .join(' ');
-    document.getElementById('wordToGuess').innerText = wordDisplay;
+    document.getElementById('wordToGuess').innerHTML = wordDisplay; // Use innerHTML to parse non-breaking spaces
 }
 
 function updateWrongLetters() {
@@ -17,11 +17,6 @@ function updateWrongLetters() {
 document.getElementById('letterInput').addEventListener('input', function(e) {
     const letter = e.target.value.toUpperCase();
     e.target.value = '';
-
-    // Skip spaces
-    if (letter === ' ') {
-        return;
-    }
 
     if (guessedLetters.includes(letter) || wrongLetters.includes(letter)) {
         return;
