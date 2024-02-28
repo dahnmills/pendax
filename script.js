@@ -7,10 +7,13 @@ function displayWord() {
     document.getElementById('wordToGuess').innerText = wordDisplay;
 }
 
-function guessLetter() {
-    const input = document.getElementById('letterInput');
-    const letter = input.value.toUpperCase();
-    input.value = '';
+function updateWrongLetters() {
+    document.getElementById('wrongLetters').innerText = `Lettres fausses: ${wrongLetters.join(', ')}`;
+}
+
+document.getElementById('letterInput').addEventListener('input', function(e) {
+    const letter = e.target.value.toUpperCase();
+    e.target.value = '';
 
     if (guessedLetters.includes(letter) || wrongLetters.includes(letter)) {
         return;
@@ -20,12 +23,12 @@ function guessLetter() {
         guessedLetters.push(letter);
     } else {
         wrongLetters.push(letter);
-        document.getElementById('wrongLetters').innerText = `Lettres fausses: ${wrongLetters.join(', ')}`;
+        updateWrongLetters();
     }
 
     displayWord();
     checkGameOver();
-}
+});
 
 function checkGameOver() {
     const isComplete = wordToGuess.split('').every(letter => guessedLetters.includes(letter));
@@ -38,3 +41,4 @@ function checkGameOver() {
 }
 
 displayWord();
+updateWrongLetters();
